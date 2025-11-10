@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brickebackens Restaurang - Italiensk Pizzeria & Familjerestaurang i Örebro</title>
+    <style>
+        /* ===== ROOT VARIABLES & RESET ===== */
+        :root {
+            --primary-color: #c8102e;
+            --secondary-color: #008c45;
+            --accent-color: #ffd700;
+            --dark-bg: #1a1a1a;
+            --light-bg: #f9f5f0;
+            --text-dark: #2c2c2c;
+            --text-light: #ffffff;
+            --border-radius: 12px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.8rem; }
+        h3 { font-size: 2rem; }
+        h4 { font-size: 1.5rem; }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.98) 0%, rgba(44, 44, 44, 0.98) 100%);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #e6213a 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 15px rgba(200, 16, 46, 0.4);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background: var(--text-light);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23c8102e" width="1200" height="800"/><circle fill="%23008c45" cx="200" cy="150" r="80" opacity="0.3"/><circle fill="%23ffd700" cx="1000" cy="600" r="120" opacity="0.2"/><path d="M0,400 Q300,300 600,400 T1200,400 L1200,800 L0,800 Z" fill="%23f9f5f0" opacity="0.1"/></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(200, 16, 46, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(0, 140, 69, 0.2) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--text-light);
+            padding: 2rem;
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.7);
+            animation: slideInLeft 1s ease-out 0.3s backwards;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            animation: slideInRight 1s ease-out 0.5s backwards;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #e6213a 100%);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 24px rgba(200, 16, 46, 0.4);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            animation: fadeInUp 1s ease-out 0.7s backwards;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(200, 16, 46, 0.6);
+        }
+
+        /* ===== SECTIONS COMMON STYLES ===== */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-header h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* ===== MENU SECTION ===== */
+        .menu-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 2rem;
+            background: var(--text-light);
+            color: var(--text-dark);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: var(--text-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(200, 16, 46, 0.3);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .menu-item {
+            background: var(--text-light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .menu-item-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .menu-item:hover .menu-item-image {
+            transform: scale(1.1);
+        }
+
+        .menu-item-content {
+            padding: 1.8rem;
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .menu-item h3 {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .menu-item-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            white-space: nowrap;
+        }
+
+        .menu-item p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .menu-item-category {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: var(--secondary-color);
+            color: var(--text-light);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            background: linear-gradient(135deg, var(--light-bg) 0%, #ffffff 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .about-image:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* ===== SPECIAL OFFERS ===== */
+        .special-offers {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #e6213a 100%);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .special-offers h2 {
+            color: var(--text-light);
+        }
+
+        .special-offers h2::after {
+            background: linear-gradient(90deg, var(--accent-color), var(--text-light));
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .offer-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: var(--transition);
+        }
+
+        .offer-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .offer-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .offer-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .offer-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* ===== GALLERY SECTION ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 280px;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.2);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(200, 16, 46, 0.8), rgba(0, 140, 69, 0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay span {
+            color: var(--text-light);
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            animation: zoomIn 0.4s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: var(--border-radius);
+            box-shadow: 0 0 60px rgba(255, 255, 255, 0.3);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover {
+            background: var(--accent-color);
+            transform: rotate(90deg);
+        }
+
+        /* ===== REVIEWS SECTION ===== */
+        .reviews {
+            background: linear-gradient(135deg, #f9f5f0 0%, #ffffff 100%);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .review-card {
+            background: var(--text-light);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 6rem;
+            color: var(--primary-color);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        .review-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .review-stars {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .review-info h4 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+        }
+
+        .review-info p {
+            margin: 0;
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        /* ===== BOOKING SECTION ===== */
+        .booking {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #2c2c2c 100%);
+            color: var(--text-light);
+        }
+
+        .booking h2 {
+            color: var(--text-light);
+        }
+
+        .booking h2::after {
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+        }
+
+        .booking-form {
+            max-width: 700px;
+            margin: 3rem auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1.3rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #e6213a 100%);
+            color: var(--text-light);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 24px rgba(200, 16, 46, 0.4);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(200, 16, 46, 0.6);
+        }
+
+        .success-message {
+            display: none;
+            background: var(--secondary-color);
+            color: var(--text-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideInRight 0.5s ease-out;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: var(--text-light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .contact-details p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .map-container {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 500px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #2c2c2c 100%);
+            color: var(--text-light);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .footer-section a {
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== ADMIN MODE ===== */
+        .editable {
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .admin-mode .editable:hover {
+            outline: 2px dashed var(--accent-color);
+            cursor: pointer;
+        }
+
+        .admin-mode .editable::after {
+            content: '✎';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--accent-color);
+            color: var(--text-dark);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .admin-mode .editable:hover::after {
+            display: flex;
+        }
+
+        .admin-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary-color), #e6213a);
+            color: var(--text-light);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            z-index: 1500;
+        }
+
+        .admin-panel.show {
+            display: flex;
+        }
+
+        .admin-panel button {
+            background: var(--text-light);
+            color: var(--primary-color);
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .admin-panel button:hover {
+            transform: scale(1.05);
+        }
+
+        .login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+        }
+
+        .login-modal.show {
+            display: flex;
+        }
+
+        .login-form {
+            background: var(--text-light);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-hover);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .login-form h2 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .login-form button:hover {
+            background: #e6213a;
+        }
+
+        .login-error {
+            color: var(--primary-color);
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 968px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                right: 0;
+                flex-direction: column;
+                background: rgba(26, 26, 26, 0.98);
+                padding: 2rem;
+                transition: left 0.3s ease;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-images {
+                order: -1;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== SCROLL TO TOP BUTTON ===== */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary-color), #e6213a);
+            color: var(--text-light);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: 0 6px 20px rgba(200, 16, 46, 0.4);
+            z-index: 1000;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(200, 16, 46, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER & NAVIGATION -->
+    <header id="header">
+        <div class="header-container">
+            <a href="#home" class="logo">
+                <div class="logo-icon">🍕</div>
+                <span class="editable" data-key="logo-text">Brickebackens Restaurang</span>
+            </a>
+            <nav>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul id="navMenu">
+                    <li><a href="#home" class="nav-link active">Hem</a></li>
+                    <li><a href="#menu" class="nav-link">Meny</a></li>
+                    <li><a href="#about" class="nav-link">Om oss</a></li>
+                    <li><a href="#gallery" class="nav-link">Galleri</a></li>
+                    <li><a href="#reviews" class="nav-link">Recensioner</a></li>
+                    <li><a href="#contact" class="nav-link">Kontakt</a></li>
+                    <li><a href="#booking" class="nav-link">Bokning</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="editable" data-key="hero-title">Välkommen till Brickebackens Restaurang</h1>
+            <p class="editable" data-key="hero-subtitle">Din lokala pizzeria och familjerestaurang i Örebro!</p>
+            <a href="#menu" class="btn-primary">Se vår meny</a>
+        </div>
+    </section>
+
+    <!-- SPECIAL OFFERS SECTION -->
+    <section class="special-offers" id="offers">
+        <div class="section-header">
+            <h2 class="editable" data-key="offers-title">Varför välja oss?</h2>
+                <p class="editable" data-key="offers-subtitle" style="color: rgb(255, 255, 255);">
+                Vi erbjuder mer än bara god mat
+                </p>
+        </div>
+        <div class="offers-grid">
+            <div class="offer-card">
+                <div class="offer-icon">🌱</div>
+                <h3 class="editable" data-key="offer1-title">Färska råvaror</h3>
+                <p class="editable" data-key="offer1-text">Vi använder enbart färska och lokala råvaror för bästa smak och kvalitet</p>
+            </div>
+            <div class="offer-card">
+                <div class="offer-icon">👨‍🍳</div>
+                <h3 class="editable" data-key="offer2-title">Äkta italiensk tradition</h3>
+                <p class="editable" data-key="offer2-text">Våra recept kommer från generationer av italienska familjetraditioner</p>
+            </div>
+            <div class="offer-card">
+                <div class="offer-icon">🤍</div>
+                <h3 class="editable" data-key="offer3-title">Familjevänlig miljö</h3>
+                <p class="editable" data-key="offer3-text">En varm och välkomnande atmosfär för hela familjen</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section class="menu" id="menu">
+        <div class="section-header">
+            <h2 class="editable" data-key="menu-title">Vår Meny</h2>
+            <p class="editable" data-key="menu-subtitle">Upptäck våra läckra rätter tillagade med kärlek</p>
+        </div>
+
+        <div class="menu-filters">
+            <button class="filter-btn active" data-filter="all">Alla</button>
+            <button class="filter-btn" data-filter="pizza">Pizzor</button>
+            <button class="filter-btn" data-filter="grill">Grillrätter</button>
+            <button class="filter-btn" data-filter="sallad">Sallader</button>
+            <button class="filter-btn" data-filter="dryck">Dryck</button>
+        </div>
+
+        <div class="menu-grid" id="menuGrid">
+            <!-- Pizza items -->
+            <div class="menu-item" data-category="pizza">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect fill='%23c8102e' width='400' height='300'/><circle cx='200' cy='150' r='100' fill='%23ffd700' opacity='0.3'/><circle cx='150' cy='120' r='15' fill='%23fff'/><circle cx='250' cy='140' r='15' fill='%23fff'/><circle cx='180' cy='180' r='15' fill='%23fff'/><circle cx='220' cy='160' r='15' fill='%23fff'/><text x='200' y='270' font-size='40' text-anchor='middle' fill='%23fff' font-family='Arial'>🍕</text></svg>" alt="Margherita" class="menu-item-image editable-image" data-key="menu-img-1">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="editable" data-key="menu1-name">Margherita</h3>
+                        <span class="menu-item-price editable" data-key="menu1-price">95 kr</span>
+                    </div>
+                    <p class="editable" data-key="menu1-desc">Klassisk pizza med tomatsås, mozzarella och färsk basilika</p>
+                    <span class="menu-item-category">Pizza</span>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="pizza">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect fill='%23e6213a' width='400' height='300'/><circle cx='200' cy='150' r='100' fill='%23ffd700' opacity='0.3'/><circle cx='140' cy='110' r='12' fill='%23ff6b6b'/><circle cx='260' cy='130' r='12' fill='%23ff6b6b'/><circle cx='170' cy='170' r='12' fill='%23ff6b6b'/><circle cx='230' cy='180' r='12' fill='%23ff6b6b'/><circle cx='200' cy='140' r='12' fill='%23ff6b6b'/><text x='200' y='270' font-size='40' text-anchor='middle' fill='%23fff' font-family='Arial'>🍕</text></svg>" alt="Pepperoni" class="menu-item-image editable-image" data-key="menu-img-2">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="editable" data-key="menu2-name">Pepperoni</h3>
+                        <span class="menu-item-price editable" data-key="menu2-price">115 kr</span>
+                    </div>
+                    <p class="editable" data-key="menu2-desc">Saftig pepperoni, mozzarella och tomatsås</p>
+                    <span class="menu-item-category">Pizza</span>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="pizza">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect fill='%23008c45' width='400' height='300'/><circle cx='200' cy='150' r='100' fill='%23ffd700' opacity='0.3'/><circle cx='160' cy='120' r='10' fill='%2398D98E'/><circle cx='240' cy='140' r='10' fill='%2398D98E'/><circle cx='180' cy='170' r='10' fill='%2398D98E'/><circle cx='220' cy='160' r='10' fill='%2398D98E'/><circle cx='200' cy='180' r='10' fill='%2398D98E'/><text x='200' y='270' font-size='40' text-anchor='middle' fill='%23fff' font-family='Arial'>🍕</text></svg>" alt="Vegetariana" class="menu-item-image editable-image" data-key="menu-img-3">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="editable" data-key="menu3-name">Vegetariana</h3>
+                        <span class="menu-item-price editable" data-key="menu3-price">105 kr</span>
+                    </div>
+                    <p class="editable" data-key="menu3-desc">Färska grönsaker, paprika, lök, oliver och champinjoner</p>
+                    <span class="menu-item-category">Pizza</span>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="pizza">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect fill='%23c8102e' width='400' height='300'/><circle cx='200' cy='150' r='100' fill='%23ffd700' opacity='0.4'/><circle cx='150' cy='130' r='13' fill='%23ffc0cb'/><circle cx='250' cy='150' r='13' fill='%23ffc0cb'/><circle cx='180' cy='180' r='13' fill='%23ffc0cb'/><circle cx='220' cy='170' r='13' fill='%23ffc0cb'/><text x='200' y='270' font-size='40' text-anchor='middle' fill='%23fff' font-family='Arial'>🍕</text></svg>" alt="Quattro Stagioni" class="menu-item-image editable-image" data-key="menu-img-4">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="editable" data-key="menu4-name">Quattro Stagioni</h3>
+                        <span class="menu-item-price editable" data-key="menu4-price">125 kr</span>
+                    </div>
+                    <p class="editable" data-key="menu4-desc">Skinka, champinjoner, räkor och kronärtskocka</p>
+                    <span class="menu-item-category">Pizza</span>
+                </div>
+            </div>
+
+            <!-- Grill items -->
+            <div class="menu-item" data-category="grill">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect fill='%238B4513' width='400' height='300'/><rect x='80' y='100' width='240' height='100' rx='10' fill='%23D2691E'/><rect x='100' y='115' width='200' height='70' rx='5' fill='%23A0522D'/><text x='200' y='270' font-size='40' text-anchor='middle' fill='%23fff' font-family='Arial'>🥩</text></svg>" alt="Grillad Entrecôte" class="menu-item-image editable-image" data-key="menu-img-5">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="editable" data-key="menu5-name">Grillad Entrecôte</h3>
+                        <span class="menu-item-price editable" data-key="menu5-price">195 kr</span>
+                    </div>
+                    <p class="editable" data-key="menu5-desc">Saftig entrecôte serverad med pommes frites och bearnaisesås</p>
+                    <span class="menu-item-category">Grillrätter</span>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="grill">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect fill='%23ff6b35' width='400' height='300'/><circle cx='150' cy='120' r='30' fill='%23ffcc00'/><circle cx='250' cy='140' r='30' fill='%23ffcc00'/><circle cx='200' cy='180' r='30' fill='%23ffcc00'/><text x='200' y='270' font-size='40' text-anchor='middle' fill='%23fff' font-family='Arial'>🍗</text></svg>" alt="Kycklingspett" class="menu-item-image editable-image" data-key="menu-img-6">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="editable" data-key="menu6-name">Kycklingspett</h3>
+                        <span class="menu-item-price editable" data-key="menu6-price">145 kr</span>
+                    </div>
+                    <p class="editable" data-key="menu6-desc">Marinerad kycklingspett med ris och grönsaker</p>
+                    <span class="menu-item-category">Grillrätter</span>
+                </div>
+            </div>
+
+            <!-- Sallad items -->
+            <div class="menu-item" data-category="sallad">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect fill='%2398D98E' width='400' height='300'/><circle cx='150' cy='130' r='25' fill='%23228B22' opacity='0.7'/><circle cx='250' cy='150' r='25' fill='%23228B22' opacity='0.7'/><circle cx='200' cy='180' r='25' fill='%23228B22' opacity='0.7'/><circle cx='180' cy='140' r='15' fill='%23ff6b6b'/><circle cx='220' cy='160' r='15' fill='%23ff6b6b'/><text x='200' y='270' font-size='40' text-anchor='middle' fill='%23fff' font-family='Arial'>🥗</text></svg>" alt="Caesarsallad" class="menu-item-image editable-image" data-key="menu-img-7">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="editable" data-key="menu7-name">Caesarsallad</h3>
+                        <span class="menu-item-price editable" data-key="menu7-price">95 kr</span>
+                    </div>
+                    <p class="editable" data-key="menu7-desc">Klassisk caesarsallad med kyckling, krutonger och parmesanost</p>
+                    <span class="menu-item-category">Sallader</span>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="sallad">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect fill='%2366BB6A' width='400' height='300'/><circle cx='160' cy='120' r='20' fill='%23fff' opacity='0.8'/><circle cx='240' cy='140' r='20' fill='%23fff' opacity='0.8'/><circle cx='200' cy='170' r='20' fill='%23fff' opacity='0.8'/><rect x='170' y='180' width='60' height='30' rx='5' fill='%23ffc0cb'/><text x='200' y='270' font-size='40' text-anchor='middle' fill='%23fff' font-family='Arial'>🥗</text></svg>" alt="Grekisk sallad" class="menu-item-image editable-image" data-key="menu-img-8">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="editable" data-key="menu8-name">Grekisk sallad</h3>
+                        <span class="menu-item-price editable" data-key="menu8-price">85 kr</span>
+                    </div>
+                    <p class="editable" data-key="menu8-desc">Feta, oliver, tomat, gurka och rödlök med olivolja</p>
+                    <span class="menu-item-category">Sallader</span>
+                </div>
+            </div>
+
+            <!-- Dryck items -->
+            <div class="menu-item" data-category="dryck">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect fill='%23ff6b6b' width='400' height='300'/><rect x='150' y='50' width='100' height='150' rx='50' fill='%23fff' opacity='0.3'/><rect x='160' y='80' width='80' height='100' fill='%23e74c3c'/><text x='200' y='270' font-size='40' text-anchor='middle' fill='%23fff' font-family='Arial'>🥤</text></svg>" alt="Läsk" class="menu-item-image editable-image" data-key="menu-img-9">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="editable" data-key="menu9-name">Läsk 33cl</h3>
+                        <span class="menu-item-price editable" data-key="menu9-price">25 kr</span>
+                    </div>
+                    <p class="editable" data-key="menu9-desc">Coca-Cola, Fanta, Sprite</p>
+                    <span class="menu-item-category">Dryck</span>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="dryck">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect fill='%234a90e2' width='400' height='300'/><rect x='150' y='50' width='100' height='150' rx='50' fill='%23fff' opacity='0.3'/><rect x='160' y='80' width='80' height='100' fill='%2387ceeb'/><circle cx='180' cy='100' r='8' fill='%23fff' opacity='0.6'/><circle cx='220' cy='120' r='8' fill='%23fff' opacity='0.6'/><text x='200' y='270' font-size='40' text-anchor='middle' fill='%23fff' font-family='Arial'>💧</text></svg>" alt="Vatten" class="menu-item-image editable-image" data-key="menu-img-10">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="editable" data-key="menu10-name">Vatten 50cl</h3>
+                        <span class="menu-item-price editable" data-key="menu10-price">20 kr</span>
+                    </div>
+                    <p class="editable" data-key="menu10-desc">Kallfiltrerat vatten</p>
+                    <span class="menu-item-category">Dryck</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2 class="editable" data-key="about-title">Om Brickebackens Restaurang</h2>
+                <p class="editable" data-key="about-text1">Brickebackens Restaurang har serverat god mat i hjärtat av Brickebacken sedan 1990. Vi erbjuder ett brett utbud av pizzor, grillrätter och sallader – alltid med färska råvaror och hemlagad smak.</p>
+                <p class="editable" data-key="about-text2">Vår passion för mat och gästvänlighet genomsyrar allt vi gör. Vi tror på den italienska traditionen där mat är mer än bara näring – det är ett sätt att samla familj och vänner.</p>
+                <p class="editable" data-key="about-text3">Välkommen till vår restaurang där varje måltid är en upplevelse!</p>
+            </div>
+            <div class="about-images">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect fill='%23f9f5f0' width='400' height='400'/><rect x='50' y='80' width='300' height='240' rx='10' fill='%23c8102e'/><rect x='70' y='100' width='260' height='200' rx='5' fill='%23fff'/><circle cx='120' cy='150' r='15' fill='%23ffd700'/><circle cx='180' cy='160' r='15' fill='%23ffd700'/><circle cx='240' cy='155' r='15' fill='%23ffd700'/><text x='200' y='350' font-size='30' text-anchor='middle' fill='%23c8102e' font-family='Arial'>Restaurang Interiör</text></svg>" alt="Restaurang interiör" class="about-image editable-image" data-key="about-img-1">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect fill='%23f9f5f0' width='400' height='400'/><circle cx='200' cy='160' r='80' fill='%23008c45'/><circle cx='170' cy='140' r='12' fill='%23fff'/><circle cx='230' cy='140' r='12' fill='%23fff'/><path d='M 170 180 Q 200 200 230 180' stroke='%23fff' stroke-width='5' fill='none'/><text x='200' y='350' font-size='30' text-anchor='middle' fill='%23c8102e' font-family='Arial'>Glad Personal</text></svg>" alt="Personal" class="about-image editable-image" data-key="about-img-2">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect fill='%23f9f5f0' width='400' height='400'/><rect x='80' y='100' width='240' height='180' rx='15' fill='%23c8102e'/><rect x='100' y='120' width='200' height='140' rx='10' fill='%23ffd700'/><circle cx='150' cy='160' r='20' fill='%23008c45'/><circle cx='250' cy='180' r='20' fill='%23008c45'/><circle cx='200' cy='220' r='20' fill='%23008c45'/><text x='200' y='350' font-size='30' text-anchor='middle' fill='%23c8102e' font-family='Arial'>Vår Mat</text></svg>" alt="Mat" class="about-image editable-image" data-key="about-img-3">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect fill='%23f9f5f0' width='400' height='400'/><rect x='60' y='80' width='280' height='220' rx='15' fill='%23008c45'/><rect x='80' y='100' width='240' height='180' rx='10' fill='%23fff'/><rect x='140' y='140' width='40' height='80' fill='%23c8102e'/><rect x='220' y='140' width='40' height='80' fill='%23c8102e'/><rect x='120' y='160' width='160' height='20' fill='%23c8102e'/><text x='200' y='350' font-size='30' text-anchor='middle' fill='%23c8102e' font-family='Arial'>Mysig Miljö</text></svg>" alt="Miljö" class="about-image editable-image" data-key="about-img-4">
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="gallery" id="gallery">
+        <div class="section-header">
+            <h2 class="editable" data-key="gallery-title">Vårt Galleri</h2>
+            <p class="editable" data-key="gallery-subtitle">Se våra läckra rätter och trivsamma miljö</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect fill='%23c8102e' width='400' height='400'/><circle cx='200' cy='200' r='120' fill='%23ffd700' opacity='0.4'/><circle cx='150' cy='170' r='20' fill='%23fff'/><circle cx='250' cy='180' r='20' fill='%23fff'/><circle cx='180' cy='230' r='20' fill='%23fff'/><circle cx='220' cy='220' r='20' fill='%23fff'/><text x='200' y='370' font-size='35' text-anchor='middle' fill='%23fff' font-family='Arial'>Pizza Specialitet</text></svg>" alt="Galleri 1" class="editable-image" data-key="gallery-img-1">
+                <div class="gallery-overlay"><span>+</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect fill='%23008c45' width='400' height='400'/><rect x='80' y='120' width='240' height='160' rx='20' fill='%23ffd700' opacity='0.5'/><circle cx='140' cy='180' r='25' fill='%23fff' opacity='0.8'/><circle cx='260' cy='200' r='25' fill='%23fff' opacity='0.8'/><circle cx='200' cy='220' r='25' fill='%23fff' opacity='0.8'/><text x='200' y='370' font-size='35' text-anchor='middle' fill='%23fff' font-family='Arial'>Fräsch Sallad</text></svg>" alt="Galleri 2" class="editable-image" data-key="gallery-img-2">
+                <div class="gallery-overlay"><span>+</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect fill='%238B4513' width='400' height='400'/><rect x='100' y='140' width='200' height='120' rx='15' fill='%23D2691E'/><rect x='120' y='160' width='160' height='80' rx='10' fill='%23A0522D'/><text x='200' y='370' font-size='35' text-anchor='middle' fill='%23fff' font-family='Arial'>Grillat Kött</text></svg>" alt="Galleri 3" class="editable-image" data-key="gallery-img-3">
+                <div class="gallery-overlay"><span>+</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect fill='%23e6213a' width='400' height='400'/><rect x='60' y='80' width='280' height='240' rx='20' fill='%23fff' opacity='0.3'/><rect x='100' y='140' width='80' height='120' rx='10' fill='%23c8102e'/><rect x='220' y='140' width='80' height='120' rx='10' fill='%23c8102e'/><circle cx='140' cy='180' r='15' fill='%23ffd700'/><circle cx='260' cy='200' r='15' fill='%23ffd700'/><text x='200' y='370' font-size='35' text-anchor='middle' fill='%23fff' font-family='Arial'>Restaurant Servering</text></svg>" alt="Galleri 4" class="editable-image" data-key="gallery-img-4">
+                <div class="gallery-overlay"><span>+</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect fill='%23ffd700' width='400' height='400'/><circle cx='200' cy='200' r='100' fill='%23c8102e' opacity='0.4'/><rect x='150' y='150' width='100' height='100' rx='10' fill='%23008c45'/><text x='200' y='370' font-size='35' text-anchor='middle' fill='%23c8102e' font-family='Arial'>Italiensk Tradition</text></svg>" alt="Galleri 5" class="editable-image" data-key="gallery-img-5">
+                <div class="gallery-overlay"><span>+</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect fill='%2366BB6A' width='400' height='400'/><rect x='80' y='100' width='240' height='200' rx='15' fill='%23fff' opacity='0.4'/><circle cx='140' cy='160' r='30' fill='%23c8102e'/><circle cx='260' cy='180' r='30' fill='%23c8102e'/><circle cx='200' cy='240' r='30' fill='%23c8102e'/><text x='200' y='370' font-size='35' text-anchor='middle' fill='%23fff' font-family='Arial'>Familjemiddag</text></svg>" alt="Galleri 6" class="editable-image" data-key="gallery-img-6">
+                <div class="gallery-overlay"><span>+</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section class="reviews" id="reviews">
+        <div class="section-header">
+            <h2 class="editable" data-key="reviews-title">Vad våra gäster säger</h2>
+            <p class="editable" data-key="reviews-subtitle">Vi är stolta över våra nöjda kunder</p>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text editable" data-key="review1-text">Fantastisk mat och underbar personal! Pizzorna är de bästa i Örebro. Vi kommer alltid tillbaka hit när vi vill ha äkta italiensk smak.</p>
+                <div class="review-author">
+                    <div class="review-avatar">A</div>
+                    <div class="review-info">
+                        <h4 class="editable" data-key="review1-name">Anna Svensson</h4>
+                        <p>Stamkund sedan 2018</p>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text editable" data-key="review2-text">Perfekt familjerestaurang! Barnen älskar pizzorna och vi uppskattar den mysiga atmosfären. Bra priser och generösa portioner.</p>
+                <div class="review-author">
+                    <div class="review-avatar">M</div>
+                    <div class="review-info">
+                        <h4 class="editable" data-key="review2-name">Mikael Johansson</h4>
+                        <p>Besökte i december 2024</p>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text editable" data-key="review3-text">Alltid lika god mat och trevlig service! Deras entrecôte är fantastisk och grillade köttspett smälter i munnen. Rekommenderar varmt!</p>
+                <div class="review-author">
+                    <div class="review-avatar">E</div>
+                    <div class="review-info">
+                        <h4 class="editable" data-key="review3-name">Emma Karlsson</h4>
+                        <p>Besökte i januari 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING SECTION -->
+    <section class="booking" id="booking">
+        <div class="section-header">
+            <h2 class="editable" data-key="booking-title">Boka Bord</h2>
+            <p class="editable" data-key="booking-subtitle">Reservera ditt bord enkelt och smidigt</p>
+        </div>
+        <form class="booking-form" id="bookingForm">
+            <div class="form-group">
+                <label for="name">Namn</label>
+                <input type="text" id="name" name="name" required placeholder="Ditt fullständiga namn">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">E-post</label>
+                    <input type="email" id="email" name="email" required placeholder="din@email.se">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefon</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="070-123 45 67">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="date">Datum</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Tid</label>
+                    <input type="time" id="time" name="time" required min="11:00" max="20:30">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="guests">Antal personer</label>
+                <select id="guests" name="guests" required>
+                    <option value="">Välj antal</option>
+                    <option value="1">1 person</option>
+                    <option value="2">2 personer</option>
+                    <option value="3">3 personer</option>
+                    <option value="4">4 personer</option>
+                    <option value="5">5 personer</option>
+                    <option value="6">6 personer</option>
+                    <option value="7">7 personer</option>
+                    <option value="8">8 personer</option>
+                    <option value="9+">9+ personer</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-submit">Bekräfta Bokning</button>
+            <div class="success-message" id="successMessage">
+                Tack för din bokning! Vi har mottagit din förfrågan och kommer att kontakta dig inom kort.
+            </div>
+        </form>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <h2 class="editable" data-key="contact-title">Kontakta Oss</h2>
+            <p class="editable" data-key="contact-subtitle">Vi ser fram emot att höra från dig</p>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h3>Adress</h3>
+                        <p class="editable" data-key="contact-address">Brickebackens centrum<br>Granrisvägen 23<br>702 35 Örebro</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-details">
+                        <h3>Telefon</h3>
+                        <p class="editable" data-key="contact-phone">019-36 48 56</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🕐</div>
+                    <div class="contact-details">
+                        <h3>Öppettider</h3>
+                        <p class="editable" data-key="contact-hours">Måndag - Söndag<br>11:00 - 21:00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2061.7829484573674!2d15.271445577098837!3d59.28950017458028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465c0f7cc5a98d77%3A0x2a84e0e56d31d7d0!2sGranrisv%C3%A4gen%2023%2C%20702%2035%20%C3%96rebro!5e0!3m2!1ssv!2sse!4v1710000000000!5m2!1ssv!2sse" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Brickebackens Restaurang</h3>
+                <p class="editable" data-key="footer-about">Din lokala pizzeria och familjerestaurang i Örebro sedan 1990. Vi serverar äkta italiensk mat med passion.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">📷</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Snabbmeny</h3>
+                <a href="#home">Hem</a>
+                <a href="#menu">Meny</a>
+                <a href="#about">Om oss</a>
+                <a href="#gallery">Galleri</a>
+            </div>
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+                <p class="editable" data-key="footer-address">Granrisvägen 23<br>702 35 Örebro</p>
+                <p class="editable" data-key="footer-phone">Tel: 019-36 48 56</p>
+                <p class="editable" data-key="footer-hours">Öppet: 11:00 - 21:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Brickebackens Restaurang. Alla rättigheter förbehållna.</p>
+        </div>
+    </footer>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button class="scroll-top" id="scrollTop">↑</button>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">×</button>
+            <img id="lightboxImage" src="" alt="Lightbox image">
+        </div>
+    </div>
+
+    <!-- ADMIN LOGIN MODAL -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-form">
+            <h2>Admin Inloggning</h2>
+            <input type="text" id="adminUsername" placeholder="Användarnamn">
+            <input type="password" id="adminPassword" placeholder="Lösenord">
+            <button onclick="adminLogin()">Logga in</button>
+            <p class="login-error" id="loginError">Felaktiga inloggningsuppgifter</p>
+        </div>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div class="admin-panel" id="adminPanel">
+        <span>Admin läge aktivt</span>
+        <button onclick="exitAdminMode()">Avsluta</button>
+    </div>
+
+    <!-- HIDDEN ADMIN TRIGGER -->
+    <div id="adminTrigger" style="display:none;">Admin Access</div>
+
+    <script>
+        // ===== NAVIGATION & HEADER =====
+        const header = document.getElementById('header');
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Sticky header on scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Active nav link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Close mobile menu on link click
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // ===== MENU FILTER =====
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const menuItems = document.querySelectorAll('.menu-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                menuItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                        item.style.animation = 'fadeInUp 0.6s ease-out';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // ===== GALLERY LIGHTBOX =====
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                lightboxImage.src = item.src;
+                lightbox.classList.add('active');
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // ===== BOOKING FORM =====
+        const bookingForm = document.getElementById('bookingForm');
+        const successMessage = document.getElementById('successMessage');
+
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form data
+            const formData = new FormData(bookingForm);
+            const booking = {};
+            formData.forEach((value, key) => {
+                booking[key] = value;
+            });
+
+            // Save to localStorage
+            const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            bookings.push({
+                ...booking,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+
+            // Show success message
+            successMessage.classList.add('show');
+            bookingForm.reset();
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+        });
+
+        // Set minimum date to today
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
+        // ===== SCROLL TO TOP BUTTON =====
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // ===== ADMIN MODE =====
+        let adminMode = false;
+        const loginModal = document.getElementById('loginModal');
+        const adminPanel = document.getElementById('adminPanel');
+
+        // Detect Ctrl + A combination
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'a') {
+                e.preventDefault();
+                if (!adminMode) {
+                    loginModal.classList.add('show');
+                }
+            }
+        });
+
+        // Admin login function
+        function adminLogin() {
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            const loginError = document.getElementById('loginError');
+
+            if (username === 'admin' && password === 'brickebacken2025') {
+                adminMode = true;
+                document.body.classList.add('admin-mode');
+                loginModal.classList.remove('show');
+                adminPanel.classList.add('show');
+                loginError.style.display = 'none';
+                initEditableElements();
+            } else {
+                loginError.style.display = 'block';
+            }
+        }
+
+        // Exit admin mode
+        function exitAdminMode() {
+            adminMode = false;
+            document.body.classList.remove('admin-mode');
+            adminPanel.classList.remove('show');
+        }
+
+        // Initialize editable elements
+        function initEditableElements() {
+            const editables = document.querySelectorAll('.editable');
+            const editableImages = document.querySelectorAll('.editable-image');
+
+            // Load saved content
+            editables.forEach(el => {
+                const key = el.getAttribute('data-key');
+                const saved = localStorage.getItem(key);
+                if (saved) {
+                    el.textContent = saved;
+                }
+            });
+
+            editableImages.forEach(img => {
+                const key = img.getAttribute('data-key');
+                const saved = localStorage.getItem(key);
+                if (saved) {
+                    img.src = saved;
+                }
+            });
+
+            // Make text editable
+            editables.forEach(el => {
+                el.addEventListener('click', () => {
+                    if (!adminMode) return;
+
+                    const key = el.getAttribute('data-key');
+                    const currentText = el.textContent;
+                    const newText = prompt('Redigera text:', currentText);
+
+                    if (newText !== null && newText !== currentText) {
+                        el.textContent = newText;
+                        localStorage.setItem(key, newText);
+                    }
+                });
+            });
+
+            // Make images editable
+            editableImages.forEach(img => {
+                img.addEventListener('click', (e) => {
+                    if (!adminMode) return;
+
+                    e.stopPropagation();
+                    const key = img.getAttribute('data-key');
+                    const currentSrc = img.src;
+                    const newSrc = prompt('Ange ny bild-URL:', currentSrc);
+
+                    if (newSrc !== null && newSrc !== currentSrc) {
+                        img.src = newSrc;
+                        localStorage.setItem(key, newSrc);
+                    }
+                });
+            });
+        }
+
+        // Load saved content on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const editables = document.querySelectorAll('.editable');
+            const editableImages = document.querySelectorAll('.editable-image');
+
+            editables.forEach(el => {
+                const key = el.getAttribute('data-key');
+                const saved = localStorage.getItem(key);
+                if (saved) {
+                    el.textContent = saved;
+                }
+            });
+
+            editableImages.forEach(img => {
+                const key = img.getAttribute('data-key');
+                const saved = localStorage.getItem(key);
+                if (saved) {
+                    img.src = saved;
+                }
+            });
+        });
+
+        // Close login modal on outside click
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.classList.remove('show');
+            }
+        });
+
+        // Allow Enter key to submit login
+        document.getElementById('adminPassword').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                adminLogin();
+            }
+        });
+
+        // ===== SMOOTH SCROLL WITH OFFSET FOR FIXED HEADER =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ===== FADE IN ON SCROLL ANIMATION =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.menu-item, .review-card, .offer-card, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
